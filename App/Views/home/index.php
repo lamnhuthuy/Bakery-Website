@@ -50,7 +50,7 @@
               </p>
               <p class="new-price">365.000 VND</p>
               <p class="old-price">400.000 VND</p>
-              <button class="btn btn--primary">Add to cart +</button>
+              <button onclick="addToCart(<?= $value['id'] ?>,<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : 0 ?>)" class="btn btn--primary">Add to cart +</button>
             </div>
           </div>
         <?php endforeach ?>
