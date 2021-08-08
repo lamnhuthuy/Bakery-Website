@@ -181,6 +181,13 @@
   margin-top: 15px;
   align-self: center;
 }
+.cart-error {
+  color: var(--color-primary);
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+  line-height: 2rem;
+}
 @media only screen and (max-width: 768px) {
   .cake-detail {
     flex-direction: column;

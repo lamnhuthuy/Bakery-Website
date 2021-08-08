@@ -27,9 +27,9 @@
     <?php require_once(VIEW . $view . ".php") ?>
     <?php require_once(VIEW . "/shared/footer.php") ?>
     <script src="<?= PUB ?>/js/main.js"></script>
-    <script src="<?= PUB ?>/js/img.js"></script>
     <script src="<?= PUB ?>/js/login.js"></script>
     <script src="<?= PUB ?>/js/cart.js"></script>
+    <script src="<?= PUB ?>/js/cartProcess.js"></script>
 
 </body>
 
