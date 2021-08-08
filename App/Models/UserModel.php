@@ -44,7 +44,7 @@ class UserModel extends Database
     }
     function getByEmail($email)
     {
-        $stmt = $this->con->prepare("SELECT id, name, phone, email, avatar FROM USERS WHERE email = ?");
+        $stmt = $this->con->prepare("SELECT id, name, phone, address, email, avatar FROM USERS WHERE email = ?");
         $stmt->bind_param("s", $email);
 
         $stmt->execute();
