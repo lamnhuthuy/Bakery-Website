@@ -67,6 +67,120 @@
 .cake-detail-content button:hover {
   opacity: 0.8;
 }
+/* CSS CART */
+.cart-control {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 20px;
+}
+.cart1 {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgb(44 44 44 / 30%);
+  grid-row: 1 / span 2;
+}
+.cart-detail {
+  width: 70%;
+}
+.cart1-conatain-img {
+  width: 18%;
+  border-radius: 5px;
+}
+.cart1-conatain {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 10px;
+  transition: all 0.25s;
+  border: 1px solid #6662623d;
+  padding: 10px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.opacity {
+  opacity: 0;
+}
+.cart1-delete svg {
+  width: 18px;
+}
+.cart1-delete {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  cursor: pointer;
+}
+.cart1-conatain:hover {
+  box-shadow: 0 0 5px #fc6779e0;
+}
+.cart-detail-name {
+  color: var(--color-title);
+  font-size: 1.4rem;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.cart-detail label {
+  color: var(--color-title);
+  font-size: 1.45rem;
+  margin-bottom: 4px;
+}
+
+.cart-detail input {
+  outline: none;
+  padding: 2px;
+  text-align: center;
+  border: 1px solid #7979794f;
+  border-radius: 2px;
+  color: var(--color-title);
+}
+.cart-detail-name-color {
+  color: var(--color-primary);
+}
+.cart2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  box-shadow: 0 0 5px rgb(44 44 44 / 30%);
+  border-radius: 10px;
+  grid-row: 1 / span 1;
+}
+.cart2-title {
+  font-size: 2.3rem;
+  color: var(--color-title);
+  margin-bottom: 10px;
+  align-self: center;
+}
+.cart2-user {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 8px 0;
+  font-size: 1.5rem;
+  color: var(--color-title);
+}
+
+.cart2-user-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-title);
+}
+.cart2-user p:last-child {
+  flex: 1;
+  margin-left: 10px;
+}
+.cart2-user-name-margin {
+  margin: 8px 0;
+}
+#total {
+  color: var(--color-primary);
+}
+.cart2 button {
+  margin-top: 15px;
+  align-self: center;
+}
 @media only screen and (max-width: 768px) {
   .cake-detail {
     flex-direction: column;
@@ -96,5 +210,19 @@
   }
   .img1 {
     margin-bottom: 10px;
+  }
+  .cart-control {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    grid-template-rows: unset;
+    height: auto;
+    grid-template-rows: 430px;
+  }
+  .cart1 {
+    grid-row: unset;
+    overflow-y: scroll;
+  }
+  .cart2 {
+    grid-row: unset;
   }
 }
