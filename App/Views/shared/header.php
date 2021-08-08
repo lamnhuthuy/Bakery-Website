@@ -16,10 +16,12 @@
                 </form>
             </div>
             <div class="header_info">
-                <div class="header_cart">
-                    <img src="<?= PUB ?>/icons/cart.svg" alt="" />
-                    <span id="header_cart_number">0</span>
-                </div>
+                <a href="<?= DOCUMENT_ROOT ?>/Cart">
+                    <div class="header_cart">
+                        <img src="<?= PUB ?>/icons/cart.svg" alt="" />
+                        <span id="header_cart_number">0</span>
+                    </div>
+                </a>
                 <?php if (isset($_SESSION["user"])) : ?>
                     <div class="header_user">
                         <div class="header_user_image">
