@@ -47,12 +47,44 @@ class CartModel extends Database
         $stmt->bind_param("i", $userID);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result->fetch_row()[0];
+        if ($result->num_rows > 0) {
+            return $result->fetch_row()[0];
+        } else return false;
     }
-    function check()
+    function getCakeOfUser($userID)
     {
-
-        $allOrderID = $this->con->query("Select id_order from order_details")->fetch_all();
-        return $allOrderID;
+        $sql = "Select * from cart where id_user= ? ";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bind_param("i", $userID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else return false;
+    }
+    function updateCart($data)
+    {
+        if (!isset($data["id_cake"]) && !isset($data["id_user"])) {
+            return false;
+        }
+        $cakeID = $data["id_cake"];
+        $userID = $data["id_user"];
+        $amount = $data["amount"];
+        $stmt = $this->con->prepare("UPDATE CART SET amount = ? WHERE id_user = ? AND id_cake = ?");
+        $stmt->bind_param("iii", $amount, $userID,  $cakeID);
+        $stmt->execute();
+        return true;
+    }
+    function deleteCart($data)
+    {
+        if (!isset($data["id_cake"]) && !isset($data["id_user"])) {
+            return false;
+        }
+        $cakeID = $data["id_cake"];
+        $userID = $data["id_user"];
+        $stmt = $this->con->prepare("DELETE FROM CART WHERE id_user = ? AND id_cake = ?");
+        $stmt->bind_param("ii", $userID,  $cakeID);
+        $stmt->execute();
+        return true;
     }
 }
