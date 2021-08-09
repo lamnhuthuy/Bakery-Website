@@ -1,7 +1,7 @@
 <div class="container">
   <p hidden> <?= DOCUMENT_ROOT ?></p>
   <h3 class="detail-title">Cart</h3>
-  <div class="cart-control">
+  <form class="cart-control" action="<?= DOCUMENT_ROOT ?>/Cart/checkOut" method="POST">
     <div class="cart1">
       <?php if (!isset($_SESSION["user"])) : ?>
         <p class="cart-error">Your cart is empty !</p>
@@ -85,7 +85,7 @@
       <?php endif ?>
 
     </div>
-  </div>
+  </form>
 </div>
 <script>
   function onchangetotal(cakeID, userID, amount) {

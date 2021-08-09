@@ -29,8 +29,28 @@
     <script src="<?= PUB ?>/js/main.js"></script>
     <script src="<?= PUB ?>/js/login.js"></script>
     <script src="<?= PUB ?>/js/cart.js"></script>
-    <script src="<?= PUB ?>/js/cartProcess.js"></script>
-
+    <?php if (isset($_SESSION["info"]) && $_SESSION["info"] == "no") {
+        echo ('<script>
+         toast({
+        title: "Your cart is empty.",
+        message: "You have not selected procduct.",
+        type: "warning",
+        duration: 2000,
+         });
+        </script>');
+        unset($_SESSION["info"]);
+    } else if (isset($_SESSION["info"]) && $_SESSION["info"] == "yes") {
+        echo ('<script>
+        toast({
+       title: "Successfully.",
+       message: "Order successfully.",
+       type: "success",
+       duration: 2000,
+        });
+       </script>');
+        unset($_SESSION["info"]);
+    }
+    ?>
 </body>
 
 </html>
