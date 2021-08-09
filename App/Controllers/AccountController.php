@@ -41,6 +41,7 @@ class AccountController extends Controller
     {
         unset($_SESSION['user']);
         unset($_SESSION["message"]);
+        unset($_SESSION["info"]);
         header("Location: " . DOCUMENT_ROOT);
         return;
     }
