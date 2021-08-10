@@ -27,4 +27,42 @@ class OrderModel extends Database
         $stmt->execute();
         return;
     }
+    function getById($id)
+    {
+        $stmt = $this->con->prepare("SELECT * FROM ORDERS WHERE id_user = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+    function getOrderDetail($id)
+    {
+        $stmt = $this->con->prepare("SELECT * FROM ORDER_DETAILS WHERE id_order = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+    function getStatus($id)
+    {
+        $stmt = $this->con->prepare("SELECT name FROM STATUS WHERE id = ?");
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc()["name"];
+        } else {
+            return false;
+        }
+    }
 }
