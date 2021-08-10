@@ -29,7 +29,7 @@
                         </div>
                         <div class="header_user_dropdown">
                             <ul>
-                                <li><a href="#/">Profile</a></li>
+                                <li><a href="<?= DOCUMENT_ROOT ?>/Profile">Profile</a></li>
                                 <li><a href="#/">Cart</a></li>
                                 <li><a href="<?= DOCUMENT_ROOT ?>/Account/signOut">Sign out</a></li>
                             </ul>
