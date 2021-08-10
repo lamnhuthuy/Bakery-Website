@@ -41,40 +41,43 @@
     <h3 class="detail-title">History</h3>
     <div class="history">
         <div class="history-list">
-            <?php foreach ($data["order"] as $index => $value) : ?>
-                <div class="history-list-item">
-                    <p class="cart2-title cart2-title-border">Bill ID: #<?= $value["id"] ?></p>
-                    <div class="history-item-all">
-                        <?php foreach ($data["order_detail"][$value["id"]] as $count => $item) : ?>
-                            <div class="history-list-item-content">
-                                <img src="<?= PUB ?>/img/cakes/<?= $data["cake_detail"][$value["id"]][$item["id_cake"]]["image"] ?>" alt="" class="cart1-conatain-img" />
-                                <div class="cart-detail">
-                                    <p class="cart-detail-name history-item-title">
-                                        <?= $data["cake_detail"][$value["id"]][$item["id_cake"]]["name"] ?>
-                                    </p>
-                                    <p class="cart-detail-name history-item-title">Size: <?= $data["cake_detail"][$value["id"]][$item["id_cake"]]["size"] ?> cm</p>
-                                    <p class="
+            <?php if ($data["order"] !== []) : ?>
+                <?php foreach ($data["order"] as $index => $value) : ?>
+                    <div class="history-list-item">
+                        <p class="cart2-title cart2-title-border">Bill ID: #<?= $value["id"] ?></p>
+                        <div class="history-item-all">
+                            <?php foreach ($data["order_detail"][$value["id"]] as $count => $item) : ?>
+                                <div class="history-list-item-content">
+                                    <img src="<?= PUB ?>/img/cakes/<?= $data["cake_detail"][$value["id"]][$item["id_cake"]]["image"] ?>" alt="" class="cart1-conatain-img" />
+                                    <div class="cart-detail">
+                                        <p class="cart-detail-name history-item-title">
+                                            <?= $data["cake_detail"][$value["id"]][$item["id_cake"]]["name"] ?>
+                                        </p>
+                                        <p class="cart-detail-name history-item-title">Size: <?= $data["cake_detail"][$value["id"]][$item["id_cake"]]["size"] ?> cm</p>
+                                        <p class="
                                  cart-detail-name cart-detail-name-color
                                  history-item-title
                                     ">
-                                        Price: <?= number_format($data["cake_detail"][$value["id"]][$item["id_cake"]]["price"]) ?> VND
-                                    </p>
-                                    <p class="cart-detail-name history-item-title">Quantity:<?= $item["amount"] ?></p>
+                                            Price: <?= number_format($data["cake_detail"][$value["id"]][$item["id_cake"]]["price"]) ?> VND
+                                        </p>
+                                        <p class="cart-detail-name history-item-title">Quantity:<?= $item["amount"] ?></p>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php endforeach ?>
-                        <p class="history-item-all-total">
-                            Total:
-                            <span class="total"> <?= number_format($value["total"]) ?>VND.</span>
-                        </p>
-                        <p class="history-item-all-total">
-                            Status:
-                            <span class="total"><?= $data["status"][$value["id"]] ?>. </span>
-                        </p>
+                            <?php endforeach ?>
+                            <p class="history-item-all-total">
+                                Total:
+                                <span class="total"> <?= number_format($value["total"]) ?>VND.</span>
+                            </p>
+                            <p class="history-item-all-total">
+                                Status:
+                                <span class="total"><?= $data["status"][$value["id"]] ?>. </span>
+                            </p>
+                        </div>
                     </div>
-                </div>
-            <?php endforeach ?>
-
+                <?php endforeach ?>
+            <?php else : ?>
+                <p class="cart2-title">You are not buying.</p>
+            <?php endif ?>
         </div>
     </div>
 </div>
