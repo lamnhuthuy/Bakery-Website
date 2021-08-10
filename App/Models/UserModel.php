@@ -56,4 +56,18 @@ class UserModel extends Database
             return false;
         }
     }
+    function getById($id)
+    {
+        $stmt = $this->con->prepare("SELECT * FROM USERS WHERE id = ?");
+        $stmt->bind_param("i", $id);
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        } else {
+            return false;
+        }
+    }
 }
