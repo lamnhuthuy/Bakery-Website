@@ -1,22 +1,22 @@
 <div class="container">
     <h3 class="detail-title">Profile</h3>
-    <form class="profile">
+    <form class="profile" action="<?= DOCUMENT_ROOT ?>/Profile/Update" enctype="multipart/form-data" method="POST">
         <div class="profile-info">
             <div class="profile-info-name">
                 <label for="p-username">User name:</label>
-                <input type="text" id="p-username" value="<?= $data["user"]["name"] ?>" />
+                <input name="username" type="text" id="p-username" value="<?= $data["user"]["name"] ?>" />
             </div>
             <div class="profile-info-name">
                 <label for="p-email">Email:</label>
-                <input type="email" id="p-email" value="<?= $data["user"]["email"] ?>" />
+                <input name="email" type="email" id="p-email" value="<?= $data["user"]["email"] ?>" />
             </div>
             <div class="profile-info-name">
                 <label for="p-phone">Phone:</label>
-                <input type="text" id="p-phone" value="<?= $data["user"]["phone"] ?>" />
+                <input name="phone" type="text" id="p-phone" value="<?= $data["user"]["phone"] ?>" />
             </div>
             <div class="profile-info-name">
                 <label for="p-address">Address:</label>
-                <input type="text" id="p-address" value="<?= $data["user"]["address"] ?>" />
+                <input name="address" type="text" id="p-address" value="<?= $data["user"]["address"] ?>" />
             </div>
             <button class="btn btn--primary">Save</button>
         </div>
@@ -35,7 +35,7 @@
             </div>
             <p class="profile-image-name"><?= $data["user"]["name"] ?></p>
             <label for="p-img" class="btn btn--primary">Upload image</label>
-            <input type="file" id="p-img" onchange="readURL(this)" />
+            <input name="avatar" type="file" id="p-img" onchange="readURL(this)" />
         </div>
     </form>
     <h3 class="detail-title">History</h3>
@@ -84,6 +84,8 @@
 </body>
 <script>
     var img = document.getElementById("profile-image");
+    var avt = document.querySelector(".header_user_image img")
+    var documentRoot = document.getElementById("documentRoot").innerHTML;
 
     function readURL(input) {
         if (input.files) {

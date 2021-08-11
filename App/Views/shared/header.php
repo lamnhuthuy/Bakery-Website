@@ -25,7 +25,7 @@
                 <?php if (isset($_SESSION["user"])) : ?>
                     <div class="header_user">
                         <div class="header_user_image">
-                            <img src="<?= PUB ?>/img/<?= $_SESSION["user"]["avatar"] ?>" alt="" />
+                            <img src="<?= PUB ?>/upload/userAvatar/<?= $_SESSION["user"]["avatar"] ?>" alt="" />
                         </div>
                         <div class="header_user_dropdown">
                             <ul>

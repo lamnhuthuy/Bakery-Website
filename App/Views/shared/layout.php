@@ -29,6 +29,7 @@
     <script src="<?= PUB ?>/js/main.js"></script>
     <script src="<?= PUB ?>/js/login.js"></script>
     <script src="<?= PUB ?>/js/cart.js"></script>
+    <script src="<?= PUB ?>/js/img.js"></script>
     <?php if (isset($_SESSION["info"]) && $_SESSION["info"] == "no") {
         echo ('<script>
          toast({
@@ -49,6 +50,18 @@
         });
        </script>');
         unset($_SESSION["info"]);
+    }
+    ?>
+    <?php if (isset($_SESSION["updateProfile"]) && $_SESSION["updateProfile"] == "true") {
+        echo ('<script>
+         toast({
+        title: "Update Successfully.",
+        message: "you have successfully updated your personal information.",
+        type: "success",
+        duration: 2000,
+         });
+        </script>');
+        unset($_SESSION["updateProfile"]);
     }
     ?>
 </body>
