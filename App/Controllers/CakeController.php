@@ -8,6 +8,7 @@ class CakeController extends Controller
     function __construct()
     {
         $this->key = $this->model("CakeModel");
+        $this->userModel = $this->model("userModel");
     }
     function Index()
     {
@@ -37,8 +38,61 @@ class CakeController extends Controller
     }
     function detail($id)
     {
-
+        $data["comments"] = [];
+        $data["comments"] = $this->key->getComments($id);
+        if ($data["comments"] != []) {
+            foreach ($data["comments"] as $index => $value) {
+                $data[$value["id"]] = $this->userModel->getById($value["id_user"]);
+                $data["time"][$value["id"]] = $this->setTime($value["time"]);
+                if (isset($_SESSION["user"])) {
+                    $data["like"][$value["id"]] = $this->key->updateThich($_SESSION["user"]["id"], $value["id"]);
+                }
+            }
+        }
         $data["cakeID"] = $this->key->getCakeByID($id);
         $this->view("\cake\detailBakery", $data);
+    }
+    function addComment()
+    {
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $time = date("H:i:s M d Y", time());
+        $result = $this->key->addComment($_GET["id"], $time, $_GET["comment"]);
+        echo json_encode($result);
+    }
+    function updateCommentAndLike()
+    {
+        $result = $this->key->updateComment($_GET["likes"], $_GET["id"], $_SESSION["user"]["id"]);
+        echo json_encode($result);
+    }
+    function setTime($time)
+    {
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $timestamp = strtotime($time);
+        $seconds = time() - $timestamp;
+        $interval = round($seconds / 31536000);
+        if ($interval >= 1) {
+            return ($interval . " years ago");
+        }
+        $interval = round($seconds / 2592000);
+        if ($interval >= 1) {
+            return ($interval . " months ago");
+        }
+        $interval = round($seconds / 86400);
+        if ($interval >= 1) {
+            if ($interval < 6) {
+                return ($interval . " days ago");
+            } else {
+                return (date("M d Y",  $timestamp) . "ago");
+            }
+        }
+        $interval = round($seconds / 3600, 0, PHP_ROUND_HALF_DOWN);
+        if ($interval >= 1) {
+            return ($interval . " hours ago");
+        }
+        $interval = round($seconds / 60);
+        if ($interval >= 1) {
+            return ($interval . " mins ago");
+        }
+        return "just now";
     }
 }
