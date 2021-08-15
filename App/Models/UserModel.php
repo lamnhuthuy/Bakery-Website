@@ -11,8 +11,9 @@ class UserModel extends Database
             $email = $data['email'];
             $password = password_hash($data['password'], PASSWORD_DEFAULT);
             $role = 1;
-            $stmt = $this->con->prepare("INSERT INTO USERS(name, email, password, role) VALUES (?, ?, ?, ?)");
-            $stmt->bind_param("sssi", $name, $email, $password, $role);
+            $image = "userdefault.png";
+            $stmt = $this->con->prepare("INSERT INTO USERS(name, email, password, role,avatar) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssis", $name, $email, $password, $role, $image);
             $stmt->execute();
             $result = $stmt->affected_rows;
             if ($result < 1) {
