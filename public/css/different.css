@@ -336,6 +336,114 @@
   padding-bottom: 10px;
   border-bottom: 1px solid rgba(226, 226, 226, 0.589);
 }
+/* CSS COMMENT */
+.comment {
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 9px 4px #dfdfdfa9;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.comment-user {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding: 4px;
+}
+.comment-name {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--color-title);
+}
+.comment-content {
+  padding: 2px 20px 10px 20px;
+  background-color: #f1f1f1;
+  color: var(--color-title);
+  font-size: 1.6rem;
+  border-radius: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  line-height: 2.2rem;
+}
+.comment-time {
+  font-size: 1.3rem;
+  padding-left: 20px;
+  padding-top: 5px;
+  user-select: none;
+}
+.comment-time i {
+  cursor: pointer;
+}
+.comment-item {
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.comment-time span:first-of-type {
+  margin-right: 12px;
+}
+.comment-img-user {
+  width: 44px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  box-shadow: 0 0 0 1px red;
+}
+.comment-list {
+  height: 370px;
+
+  overflow-y: scroll;
+  border-bottom: 1px solid rgb(218, 218, 218);
+}
+.comment-center {
+  align-self: center;
+}
+.like-active {
+  color: #1877f2;
+}
+.comment-add input {
+  outline: none;
+  padding: 15px;
+  border-radius: 20px;
+  border: none;
+  background-color: #f1f1f1;
+  font-family: var(--font-poppins);
+}
+.comment-add {
+  display: flex;
+  margin-top: 20px;
+}
+.comment-add-input {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  flex: 1;
+}
+.comment-add-input button {
+  align-self: flex-start;
+}
+.comment-btn {
+  margin-top: 5px;
+  outline: none;
+  border: none;
+  padding: 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  background-color: #1877f2;
+  color: white;
+}
+.comment-btn:hover {
+  background-color: #2885ff;
+}
+.comment-btn:active {
+  background-color: #0f5abd;
+  color: rgb(219, 219, 219);
+}
 @media only screen and (max-width: 768px) {
   .cake-detail {
     flex-direction: column;
