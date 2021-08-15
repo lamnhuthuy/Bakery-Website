@@ -21,15 +21,24 @@
 </head>
 
 <body>
+    <div class="sk-chase sk-position">
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+    </div>
     <div id="toast"></div>
     <p hidden id="documentRoot"><?= DOCUMENT_ROOT ?></p>
     <?php require_once(VIEW . "\shared\header.php") ?>
     <?php require_once(VIEW . $view . ".php") ?>
     <?php require_once(VIEW . "/shared/footer.php") ?>
+
     <script src="<?= PUB ?>/js/main.js"></script>
     <script src="<?= PUB ?>/js/login.js"></script>
     <script src="<?= PUB ?>/js/cart.js"></script>
-    <script src="<?= PUB ?>/js/img.js"></script>
+    <script src="<?= PUB ?>/js/time.js"></script>
     <?php if (isset($_SESSION["info"]) && $_SESSION["info"] == "no") {
         echo ('<script>
          toast({
@@ -64,6 +73,14 @@
         unset($_SESSION["updateProfile"]);
     }
     ?>
+    <script>
+        window.onload = function() {
+            document.querySelector("body").style.opacity = "1";
+            document.querySelector(".sk-chase").style.display = "none";
+            refreshCartNumber();
+        };
+    </script>
 </body>
+
 
 </html>
