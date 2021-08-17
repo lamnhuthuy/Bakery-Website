@@ -22,11 +22,11 @@ class HomeController extends Controller
         $data["page"] = $_GET["page"];
         $data["numberProduct"] = 12;
         $data["cakePerPage"] = $this->cakeModel->getCakeByPage($_GET["page"], $data["numberProduct"]);
-        $data['bestSellers'][] =  $data["cake"][2];
-        $data['bestSellers'][] =  $data["cake"][5];
-        $data['bestSellers'][] =   $data["cake"][9];
-        $data['bestSellers'][] =   $data["cake"][1];
-        $data['bestSellers'][] =   $data["cake"][7];
+        $data['bestSellers'][] =  $data["cake"][33];
+        $data['bestSellers'][] =  $data["cake"][18];
+        $data['bestSellers'][] =   $data["cake"][26];
+        $data['bestSellers'][] =   $data["cake"][5];
+        $data['bestSellers'][] =   $data["cake"][22];
         $data["pageCount"] = ceil(count($data["cake"]) / $data["numberProduct"]);
         $this->view("/home/index", $data);
     }
