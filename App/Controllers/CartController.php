@@ -38,7 +38,7 @@ class CartController extends Controller
                 foreach ($Cake as $index => $value) {
                     $data["cake"][] = $this->cakeModel->getCakeByID($value["id_cake"]);
                     $data["amountCake"][] = $value["amount"];
-                    $data["total"] += $value["amount"] * $data["cake"][$index]["price"];
+                    $data["total"] += $value["amount"] * $data["cake"][$index]["sale"];
                 }
             }
             $this->view("/cart/cart", $data);
