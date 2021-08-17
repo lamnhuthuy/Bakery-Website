@@ -77,14 +77,19 @@ class UserModel extends Database
         $name = $data["username"];
         $phone = $data["phone"];
         $address = $data["address"];
-        $avatar = $file["name"];
-        $email = $_POST["email"];
-        $duongdan = ROOT . DS . "public" . DS . "upload" . DS . "userAvatar" . DS . $_FILES['avatar']['name'];
-        move_uploaded_file($_FILES['avatar']['tmp_name'], $duongdan);
+        $email = $data["email"];
+        if ($file["name"] !== "") {
+            $avatar = $file["name"];
+            $duongdan = ROOT . DS . "public" . DS . "upload" . DS . "userAvatar" . DS . $_FILES['avatar']['name'];
+            move_uploaded_file($_FILES['avatar']['tmp_name'], $duongdan);
+        } else {
+            $avatar = $this->getByEmail($email)["avatar"];
+        }
+
         $stmt = $this->con->prepare("UPDATE USERS SET name = ?, phone= ?, address= ?,email= ?,avatar=? WHERE id = ?");
         $stmt->bind_param("sssssi", $name, $phone, $address, $email, $avatar, $id);
         $stmt->execute();
         $_SESSION["user"] = $this->getByEmail($email);
-        return true;
+        return $avatar;
     }
 }
