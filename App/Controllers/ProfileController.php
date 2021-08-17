@@ -35,12 +35,10 @@ class ProfileController extends Controller
     }
     function update()
     {
-        if ($_FILES["avatar"]["name"] == "") {
-            header("Location: " . DOCUMENT_ROOT . "/Profile");
-        } else {
-            $result = $this->userModel->updateUser($_POST, $_FILES["avatar"]);
-            $_SESSION["updateProfile"] = "true";
-            header("Location: " . DOCUMENT_ROOT);
-        }
+
+
+        $result = $this->userModel->updateUser($_POST, $_FILES["avatar"]);
+        $_SESSION["updateProfile"] = "true";
+        header("Location: " . DOCUMENT_ROOT);
     }
 }
