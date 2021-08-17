@@ -26,7 +26,7 @@
 }
 .img-diff {
   display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 .img-diff img {
   width: 100px;

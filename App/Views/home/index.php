@@ -1,9 +1,9 @@
 <div class="hide-banner">
   <div class="banner">
-    <img src="<?= PUB ?>/img/banner.png" alt="" class="banner-img" />
-    <img src="<?= PUB ?>/img/banner2.jpg" alt="" class="banner-img" />
-    <img src="<?= PUB ?>/img/banner3.jpg" alt="" class="banner-img" />
-    <img src="<?= PUB ?>/img/banner4.jpg" alt="" class="banner-img" />
+    <img src="<?= PUB ?>/img/banner/banner.png" alt="" class="banner-img" />
+    <img src="<?= PUB ?>/img/banner/banner1.png" alt="" class="banner-img" />
+    <img src="<?= PUB ?>/img/banner/banner2.png" alt="" class="banner-img" />
+    <img src="<?= PUB ?>/img/banner/banner3.png" alt="" class="banner-img" />
   </div>
 </div>
 
@@ -13,7 +13,7 @@
     <ul>
       <?php foreach ($data["category"] as $index => $value) : ?>
         <li class="category_item">
-          <a href="#/">
+          <a href="<?= DOCUMENT_ROOT ?>/Category?type=<?= $value["id"] ?>">
             <img src="<?= PUB ?>/img/categories/<?= strtolower(str_replace(" ", "", $value["name"])) ?>.jfif" alt="" />
             <p class="category_name"><?= $value["name"] ?></p>
             <p class="category_title"><?= $value["description"] ?></p>
@@ -40,16 +40,12 @@
           <div class="Best-seller-content">
             <img src="<?= PUB ?>/img/cakes/<?= $value["image"] ?>" alt="" />
             <div class="Best-seller-info">
-              <h6 class="Best-seller-name">Snicker Fuse Chocolate Cake</h6>
+              <h6 class="Best-seller-name"><?= $value["name"] ?></h6>
               <p class="Best-seller-title">
-                Award yourself with this rich chocolate cake wonderfully
-                crammed with Cadbury Fuse and white chocolate chunks and
-                draped lusciously with molten chocolate. This perfect work of
-                art hides in every bite of chocolate that is a little nutty
-                and a lot of tasty!
+                <?= $value["description"] ?>
               </p>
-              <p class="new-price">365.000 VND</p>
-              <p class="old-price">400.000 VND</p>
+              <p class="new-price"><?= number_format($value["sale"]) ?> VND</p>
+              <p class="old-price"><?= number_format($value["price"]) ?> VND</p>
               <button onclick="addToCart(<?= $value['id'] ?>,<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : 0 ?>)" class="btn btn--primary">Add to cart +</button>
             </div>
           </div>
@@ -80,8 +76,8 @@
             <?= $value["name"] ?>
           </p>
           <div class="sweeties-prices">
-            <span class="sweeties-prices-new"><?= number_format($value["price"]) ?> VND</span>
-            <span class="sweeties-prices-old">300.000 VND</span>
+            <span class="sweeties-prices-new"><?= number_format($value["sale"]) ?> VND</span>
+            <span class="sweeties-prices-old"><?= number_format($value["price"]) ?>VND</span>
           </div>
           <button onclick="addToCart(<?= $value['id'] ?>,<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : 0 ?>)" class="btn btn1">Add to cart +</button>
         </li>
