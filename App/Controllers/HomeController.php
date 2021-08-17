@@ -20,7 +20,7 @@ class HomeController extends Controller
             $_GET["page"] = 1;
         }
         $data["page"] = $_GET["page"];
-        $data["numberProduct"] = 8;
+        $data["numberProduct"] = 12;
         $data["cakePerPage"] = $this->cakeModel->getCakeByPage($_GET["page"], $data["numberProduct"]);
         $data['bestSellers'][] =  $data["cake"][2];
         $data['bestSellers'][] =  $data["cake"][5];

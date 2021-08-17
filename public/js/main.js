@@ -48,6 +48,7 @@ dots.forEach((dot, index) => {
     gotoSlide(index);
   });
 });
+
 var imageItems = document.querySelectorAll(".banner-img");
 imageLength = imageItems[0].clientWidth;
 var contentImg = document.querySelector(".banner");
@@ -64,14 +65,4 @@ function autoImage(index) {
   contentImg.style.transform = "translateX(" + -imageLength * index + "px)";
   t = index;
 }
-
-setInterval(slideImg, 2700);
-
-// js paging
-
-// var pageNumbers = document.querySelectorAll(".sweeties_pagging_item");
-// pageNumbers.forEach(function (anchor) {
-//   anchor.addEventListener("click", (e) => {
-//     e.target.classList.add("sweeties_pagging_item-active");
-//   });
-// });
+var interval = setInterval(slideImg, 3000);
