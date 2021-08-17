@@ -5,14 +5,17 @@ use App\Core\Controller;
 class CakeController extends Controller
 {
     private $key;
+    private $userModel;
+    private $categoryModel;
     function __construct()
     {
         $this->key = $this->model("CakeModel");
-        $this->userModel = $this->model("userModel");
+        $this->userModel = $this->model("UserModel");
+        $this->categoryModel = $this->model("CategoryModel");
     }
     function Index()
     {
-        $limit = 8;
+        $limit = 12;
         if (!isset($_GET["page"])) {
             $_GET["page"] = 1;
         }
@@ -50,6 +53,8 @@ class CakeController extends Controller
             }
         }
         $data["cakeID"] = $this->key->getCakeByID($id);
+        $data["image"] = $this->categoryModel->getImage($data["cakeID"]["id"]);
+        $data["type"] = $this->categoryModel->getNameById($data["cakeID"]["id_cake_type"]);
         $this->view("\cake\detailBakery", $data);
     }
     function addComment()
@@ -82,7 +87,7 @@ class CakeController extends Controller
             if ($interval < 6) {
                 return ($interval . " days ago");
             } else {
-                return (date("M d Y",  $timestamp) . "ago");
+                return (date("M d Y",  $timestamp));
             }
         }
         $interval = round($seconds / 3600, 0, PHP_ROUND_HALF_DOWN);
