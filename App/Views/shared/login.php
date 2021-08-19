@@ -46,7 +46,6 @@
           <div class="input-field">
             <i class="fas fa-user"></i>
             <input required type="text" name="username" placeholder="Username" id="signup-text" />
-            <small id="textSigUp-error" class="error"></small>
           </div>
           <div class="input-field">
             <i class="fas fa-envelope"></i>
@@ -55,13 +54,12 @@
           </div>
           <div class="input-field">
             <i class="fas fa-phone-alt"></i>
-            <input required type="text" name="phone" placeholder="Phone" id="signup-email" onchange="getDataAjax(this.value)" />
-            <small id="emailSignUp-error" class="error"></small>
+            <input required type="text" name="phone" placeholder="Phone" id="signup-phone" />
+            <small id="phoneSignUp-error" class="error"></small>
           </div>
           <div class="input-field">
             <i class="fas fa-map-marker-alt"></i>
-            <input required type="text" name="address" placeholder="Address" id="signup-email" onchange="getDataAjax(this.value)" />
-            <small id="emailSignUp-error" class="error"></small>
+            <input required type="text" name="address" placeholder="Address" id="signup-address" />
           </div>
           <div class=" input-field">
             <i class="fas fa-lock"></i>
@@ -141,33 +139,47 @@
       return check;
     }
     // validation register
-    var textSignUp = document.getElementById("signup-text");
     var pwdSignUp = document.getElementById("signup-password");
     var emailSignUp = document.getElementById("signup-email");
     var confpwdSignUp = document.getElementById("signup-confirmpassword");
+    var phoneSignUp = document.getElementById("signup-phone");
 
-    var textSignUp_error = document.getElementById("textSigUp-error");
-    var pwdSignUp_error = document.getElementById("pwdSigUp-error");
     var emailSignUp_error = document.getElementById("emailSignUp-error");
     var confpwdSignUp_error = document.getElementById("confpwdSigUp-error");
+    var phone_error = document.getElementById("phoneSignUp-error");
 
     function checkConfirm(password, confpass) {
       var res = true;
       if (password !== confpass) {
-        res = '<i class="fas fa-exclamation-triangle"></i>Password must be same.';
+        res = '<i class="fas fa-exclamation-triangle"></i> Password must be same.';
         return res;
       }
       if (password.length < 8) {
-        res = '<i class="fas fa-exclamation-triangle"></i>Password must be at least 8 chatacters.';
+        res = '<i class="fas fa-exclamation-triangle"></i> Password must be at least 8 chatacters.';
         return res;
       }
+      return res;
+    }
+
+    function checkPhone(phone) {
+      var res = true;
+      if (phone.length !== 10) {
+        res = '<i class="fas fa-exclamation-triangle"></i> Phone must be have 10 numbers.';
+        return res;
+      }
+      if (phone.charAt(0) !== '0')
+        res = '<i class="fas fa-exclamation-triangle"></i> First number is 0.';
       return res;
     }
 
     function checkRegisterSubmit() {
       var result = true;
       var checkValue = checkConfirm(pwdSignUp.value, confpwdSignUp.value);
-
+      var phone = checkPhone(phoneSignUp.value);
+      if (phone !== true) {
+        phone_error.innerHTML = phone;
+        result = false;
+      } else phone_error.innerHTML = "";
       if (checkValue !== true) {
         confpwdSignUp_error.innerHTML = checkValue;
         result = false;
