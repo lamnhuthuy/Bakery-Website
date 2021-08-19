@@ -53,13 +53,23 @@
             <input required type="email" name="email" placeholder="Email" id="signup-email" onchange="getDataAjax(this.value)" />
             <small id="emailSignUp-error" class="error"></small>
           </div>
-          <div class=" input-field">
-            <i class="fas fa-lock"></i>
-            <input required type="password" name="password" placeholder="Password" id="signup-password" onchange="checkPassword(this.value)" />
-            <small id="pwdSigUp-error" class="error"></small>
+          <div class="input-field">
+            <i class="fas fa-phone-alt"></i>
+            <input required type="text" name="phone" placeholder="Phone" id="signup-email" onchange="getDataAjax(this.value)" />
+            <small id="emailSignUp-error" class="error"></small>
+          </div>
+          <div class="input-field">
+            <i class="fas fa-map-marker-alt"></i>
+            <input required type="text" name="address" placeholder="Address" id="signup-email" onchange="getDataAjax(this.value)" />
+            <small id="emailSignUp-error" class="error"></small>
           </div>
           <div class=" input-field">
             <i class="fas fa-lock"></i>
+            <input required type="password" name="password" placeholder="Password" id="signup-password" />
+            <small id="pwdSigUp-error" class="error"></small>
+          </div>
+          <div class=" input-field">
+            <i class="fas fa-key"></i>
             <input required type="password" name="confirm password" placeholder="Confirm Password" id="signup-confirmpassword" />
             <small id="confpwdSigUp-error" class="error"></small>
           </div>
@@ -73,8 +83,8 @@
         <div class="content">
           <h3>New here ?</h3>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-            ex ratione. Aliquid!
+            Do you already have an account?
+            If not, Please register your account here.
           </p>
           <button class="btn transparent" id="sign-up-btn">Register</button>
         </div>
@@ -84,8 +94,8 @@
         <div class="content">
           <h3>One of us ?</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-            laboriosam ad deleniti.
+            Welcome to my Greek's Bakery website.
+            Let's start with us in here.
           </p>
           <button class="btn transparent" id="sign-in-btn">Login</button>
         </div>
@@ -141,17 +151,15 @@
     var emailSignUp_error = document.getElementById("emailSignUp-error");
     var confpwdSignUp_error = document.getElementById("confpwdSigUp-error");
 
-    function checkPassword(password) {
-      if (password.length < 8) {
-        pwdSignUp_error.innerHTML =
-          '<i class="fas fa-exclamation-triangle"></i> Password must be at least 8 characters';
-      } else pwdSignUp_error.innerHTML = "";
-    }
-
     function checkConfirm(password, confpass) {
       var res = true;
       if (password !== confpass) {
         res = '<i class="fas fa-exclamation-triangle"></i>Password must be same.';
+        return res;
+      }
+      if (password.length < 8) {
+        res = '<i class="fas fa-exclamation-triangle"></i>Password must be at least 8 chatacters.';
+        return res;
       }
       return res;
     }

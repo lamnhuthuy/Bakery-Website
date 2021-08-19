@@ -59,29 +59,30 @@ form.sign-in-form {
 }
 
 .title {
-  font-size: 2.2rem;
-  color: #444;
-  margin-bottom: 10px;
+  font-size: 2.3rem;
+  font-weight: bold;
+  color: #f3455a;
+  margin-bottom: 5px;
+  font-family: "Nunito", sans-serif;
 }
-
 .input-field {
   max-width: 380px;
   width: 100%;
-  background-color: #f0f0f0;
-  margin: 20px 0;
-  height: 55px;
+  margin: 15px 0;
+  height: 50px;
   border-radius: 55px;
   display: grid;
-  grid-template-columns: 15% 85%;
-  padding: 0 0.4rem;
+  grid-template-columns: 1fr;
   position: relative;
   row-gap: 5px;
 }
 .input-field small {
-  grid-column: 2/3;
   color: #d93025;
   font-family: "Poppins", sans-serif;
-  font-size: 14px;
+  font-size: 13px;
+  position: absolute;
+  top: 103%;
+  left: 8%;
 }
 form p {
   font-family: "Poppins", sans-serif;
@@ -91,24 +92,29 @@ form p {
 .input-field > i {
   text-align: center;
   line-height: 55px;
-  color: #acacac;
+  color: #f3455a;
   transition: 0.5s;
   font-size: 1.1rem;
+  position: absolute;
+  left: 3%;
+  top: -6%;
 }
 
 .input-field input {
+  width: 100%;
   background: #f0f0f0;
   outline: none;
   border: none;
-  line-height: 1;
   font-weight: 500;
-  font-size: 16px;
-  color: #333;
-  border-radius: 55px;
+  font-size: 15px;
+  color: #333333;
+  border-radius: inherit;
+  font-family: "Poppins", sans-serif;
+  padding-left: 35px;
 }
 
 .input-field input::placeholder {
-  color: #aaa;
+  color: #848484;
   font-weight: 500;
 }
 
@@ -118,23 +124,28 @@ form p {
 }
 
 .btn {
-  width: 150px;
-  background-color: #5995fd;
+  width: 120px;
+  background-color: #f3455a;
   border: none;
   outline: none;
-  height: 49px;
-  border-radius: 49px;
+  height: 40px;
+  border-radius: 15px;
   color: #fff;
   text-transform: uppercase;
   font-weight: 600;
-  margin: 20px 0;
+  margin: 10px 0;
   cursor: pointer;
   transition: 0.5s;
   text-align: center;
+  font-family: "Nunito", sans-serif;
+  font-size: 15px;
 }
 
 .btn:hover {
-  background-color: #4d84e2;
+  background-color: #e92038;
+}
+.btn:active {
+  background-color: #df001a;
 }
 .panels-container {
   position: absolute;
@@ -192,13 +203,14 @@ form p {
 
 .panel h3 {
   font-weight: 600;
-  line-height: 1;
   font-size: 1.5rem;
+  color: #333333;
 }
 
 .panel p {
-  font-size: 0.95rem;
+  font-size: 1rem;
   padding: 0.7rem 0;
+  color: #333333;
 }
 
 .btn.transparent {
@@ -209,6 +221,9 @@ form p {
   height: 41px;
   font-weight: 600;
   font-size: 0.8rem;
+}
+.btn.transparent:hover {
+  background: rgba(190, 190, 190, 0.452);
 }
 
 .right-panel .image,
