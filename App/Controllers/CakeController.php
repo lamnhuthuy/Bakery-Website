@@ -74,15 +74,15 @@ class CakeController extends Controller
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $timestamp = strtotime($time);
         $seconds = time() - $timestamp;
-        $interval = round($seconds / 31536000, 0, PHP_ROUND_HALF_DOWN);
+        $interval = floor($seconds / 31536000);
         if ($interval >= 1) {
             return ($interval . " years ago");
         }
-        $interval = round($seconds / 2592000, 0, PHP_ROUND_HALF_DOWN);
+        $interval = floor($seconds / 2592000);
         if ($interval >= 1) {
             return ($interval . " months ago");
         }
-        $interval = round($seconds / 86400, 0, PHP_ROUND_HALF_DOWN);
+        $interval = floor($seconds / 86400);
         if ($interval >= 1) {
             if ($interval < 6) {
                 return ($interval . " days ago");
@@ -90,14 +90,14 @@ class CakeController extends Controller
                 return (date("M d Y",  $timestamp));
             }
         }
-        $interval = round($seconds / 3600, 0, PHP_ROUND_HALF_DOWN);
+        $interval = floor($seconds / 3600);
         if ($interval >= 1) {
             return ($interval . " hours ago");
         }
-        $interval = round($seconds / 60, 0, PHP_ROUND_HALF_DOWN);
+        $interval = floor($seconds / 60);
         if ($interval >= 1) {
             return ($interval . " mins ago");
         }
-        return "just now";
+        return "Just now";
     }
 }
