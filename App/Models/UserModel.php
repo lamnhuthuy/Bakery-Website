@@ -9,11 +9,13 @@ class UserModel extends Database
         if (isset($_POST)) {
             $name = $data['username'];
             $email = $data['email'];
+            $phone = $data["phone"];
+            $address = $data["address"];
             $password = password_hash($data['password'], PASSWORD_DEFAULT);
             $role = 1;
             $image = "userdefault.png";
-            $stmt = $this->con->prepare("INSERT INTO USERS(name, email, password, role,avatar) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssis", $name, $email, $password, $role, $image);
+            $stmt = $this->con->prepare("INSERT INTO USERS(name, email, password, role,avatar,phone,address) VALUES (?, ?, ?, ?, ?,?,?)");
+            $stmt->bind_param("sssisss", $name, $email, $password, $role, $image, $phone, $address);
             $stmt->execute();
             $result = $stmt->affected_rows;
             if ($result < 1) {
