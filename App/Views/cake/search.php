@@ -5,7 +5,7 @@
         <ul>
             <?php foreach ($data["cake"] as $index => $value) : ?>
                 <li class="sweeties-item">
-                    <a href="#/">
+                    <a href="./detail/<?= $value["id"] ?>/">
                         <img src="<?= PUB ?>/img/cakes/<?= $value["image"] ?>" alt="" />
                     </a>
                     <p class="sweeties_name">
