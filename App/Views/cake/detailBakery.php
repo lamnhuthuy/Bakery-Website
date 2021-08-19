@@ -10,7 +10,6 @@
         <?php foreach ($data["image"] as $index => $value) : ?>
           <img src="<?= PUB ?>/img/cakes/<?= $value["image"] ?>" alt="" class="" />
         <?php endforeach ?>
-
       </div>
     </div>
     <div class="cake-detail-content">
@@ -23,7 +22,7 @@
         <?= $data["cakeID"]["description"] ?>
       </p>
       <p class="new-price"><?= number_format($data["cakeID"]["price"]) ?> VND</p>
-      <button onclick="addToCart(<?= $value['id'] ?>,<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : 0 ?>)" class="btn btn--primary">Add to cart +</button>
+      <button onclick="addToCart(<?= $data['cakeID']['id'] ?>,<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : 0 ?>)" class="btn btn--primary">Add to cart +</button>
     </div>
   </div>
 </div>

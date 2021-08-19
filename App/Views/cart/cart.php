@@ -12,13 +12,13 @@
         <?php else : ?>
           <?php foreach ($data["cake"] as $index => $value) : ?>
             <div id="product+<?= $value["id"] ?>" class="cart1-conatain">
-              <input type="hidden" id="price+<?= $index ?>" value="<?= $value["price"] ?>">
+              <input type="hidden" id="price+<?= $index ?>" value="<?= $value["sale"] ?>">
               <img src="<?= PUB ?>/img/cakes/<?= $value["image"] ?>" alt="" class="cart1-conatain-img" />
               <div class="cart-detail">
                 <p class="cart-detail-name"><?= $value["name"] ?>.</p>
                 <p class="cart-detail-name">Size: <?= $value["size"] ?>.</p>
                 <p class="cart-detail-name cart-detail-name-color">
-                  Price: <span><?= number_format($value["price"]) ?>
+                  Price sale: <span><?= number_format($value["sale"]) ?>
                   </span>
                   VND
                 </p>
