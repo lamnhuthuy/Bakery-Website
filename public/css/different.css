@@ -396,8 +396,7 @@
 }
 .comment-list {
   height: 370px;
-
-  overflow-y: scroll;
+  overflow-y: auto;
   border-bottom: 1px solid rgb(218, 218, 218);
 }
 .comment-center {
@@ -443,6 +442,61 @@
 .comment-btn:active {
   background-color: #0f5abd;
   color: rgb(219, 219, 219);
+}
+/* CSS SORT  */
+.Sort-header {
+  color: var(--color-title);
+  font-size: 1.6rem;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+.Sort-header i {
+  color: #1877f2;
+  margin-left: 20px;
+}
+.sort {
+  position: relative;
+  align-self: flex-start;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 1px solid rgb(202, 202, 202);
+}
+.sort::after {
+  content: "";
+  width: 20px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  left: 100%;
+}
+.sort-content {
+  display: none;
+  flex-direction: column;
+  border: 1px solid rgb(202, 202, 202);
+  z-index: 999;
+  color: var(--color-title);
+  font-size: 1.6rem;
+  border-radius: 10px;
+  overflow: hidden;
+  position: absolute;
+  left: 110%;
+  top: -283%;
+  width: 200px;
+}
+.sort-content a {
+  color: inherit;
+  display: block;
+  padding: 10px 20px;
+  font-family: var(--font-nunito);
+  transition: all 0.2s;
+}
+.sort-content a:hover {
+  background-color: #f0f0f0;
+}
+.sort:hover .sort-content {
+  display: flex;
 }
 @media only screen and (max-width: 768px) {
   .cake-detail {
@@ -497,5 +551,18 @@
   }
   .profile-image {
     width: 100%;
+  }
+  .sort-content {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    width: 300px;
+    top: -100%;
+  }
+  .sort-content a {
+    padding: 10px;
+    font-size: 1.4rem;
+  }
+  .sort:hover .sort-content {
+    display: grid;
   }
 }

@@ -29,7 +29,7 @@
             <i class="fas fa-lock"></i>
             <input type="password" name="password" placeholder="Password" id="signin-password" />
             <small id="password-error">
-              <?php echo isset($_SESSION["message"]) ? '<i class="fas fa-exclamation-triangle"></i>' . $_SESSION["message"] . '' : "";
+              <?php echo isset($_SESSION["message"]) ? '<i class="fas fa-exclamation-triangle"></i> ' . $_SESSION["message"] . '' : "";
               unset($_SESSION["message"]);
               ?>
             </small>

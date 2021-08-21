@@ -54,11 +54,17 @@
                                             <?= $data["cake_detail"][$value["id"]][$item["id_cake"]]["name"] ?>
                                         </p>
                                         <p class="cart-detail-name history-item-title">Size: <?= $data["cake_detail"][$value["id"]][$item["id_cake"]]["size"] ?> cm</p>
+                                        <p style="text-decoration: line-through;" class="
+                                 cart-detail-name 
+                                 history-item-title
+                                    ">
+                                            Price: <?= number_format($data["cake_detail"][$value["id"]][$item["id_cake"]]["price"]) ?> VND
+                                        </p>
                                         <p class="
                                  cart-detail-name cart-detail-name-color
                                  history-item-title
                                     ">
-                                            Price: <?= number_format($data["cake_detail"][$value["id"]][$item["id_cake"]]["price"]) ?> VND
+                                            Price sale: <?= number_format($data["cake_detail"][$value["id"]][$item["id_cake"]]["sale"]) ?> VND
                                         </p>
                                         <p class="cart-detail-name history-item-title">Quantity:<?= $item["amount"] ?></p>
                                     </div>

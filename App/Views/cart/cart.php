@@ -17,6 +17,11 @@
               <div class="cart-detail">
                 <p class="cart-detail-name"><?= $value["name"] ?>.</p>
                 <p class="cart-detail-name">Size: <?= $value["size"] ?>.</p>
+                <p style="text-decoration: line-through;" class="cart-detail-name cart-detail-name-color">
+                  Price: <span><?= number_format($value["price"]) ?>
+                  </span>
+                  VND
+                </p>
                 <p class="cart-detail-name cart-detail-name-color">
                   Price sale: <span><?= number_format($value["sale"]) ?>
                   </span>
