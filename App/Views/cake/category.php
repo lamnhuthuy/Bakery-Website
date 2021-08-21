@@ -1,5 +1,16 @@
 <div class="container sweeties">
     <h2 class="title"><?= $data["name"] ?></h2>
+    <div class="sort">
+        <p class="Sort-header">Sort
+            <i class="fas fa-caret-right"></i>
+        </p>
+        <div class="sort-content">
+            <a href="./Category?type=<?= $data["type"] ?>&sort=1">Price: Low to hight</a>
+            <a href="./Category?type=<?= $data["type"] ?>&sort=2">Price: Hight to low</a>
+            <a href="./Category?type=<?= $data["type"] ?>&sort=3">Alphabet: A-Z</a>
+            <a href="./Category?type=<?= $data["type"] ?>&sort=4">Size: Small to large </a>
+        </div>
+    </div>
     <div class="sweeties-list">
         <ul>
             <?php foreach ($data["cake"] as $index => $value) : ?>
