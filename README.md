@@ -15,4 +15,4 @@
 
 ## Overview
 
-[image](https://github.com/lamnhuthuy/Bakery-Website/blob/main/public/img/banner/banner.png)
+![image!](https://github.com/lamnhuthuy/Bakery-Website/blob/main/public/img/banner/banner.png)
