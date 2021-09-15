@@ -15,4 +15,4 @@
 
 ## Overview
 
-[image](public/img/banner.png)
+[image](public\img\banner\banner.png)
