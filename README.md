@@ -8,12 +8,10 @@
 
 ## Table of contents
 
-<ol>
-    <li>[Overview](#Bakery-Website)</li>
-    <li>[Description](#Description)</li>
-    <li>Third item</li>
-    <li>Fourth item</li>
-</ol>
+    1.[Overview](#Bakery-Website).
+    2.[Description](#Description).
+    3.Third item.
+    4.Fourth item.
 
 ## Description
 
