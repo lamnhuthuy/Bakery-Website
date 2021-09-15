@@ -6,9 +6,7 @@
 .category h2 {
   margin: 50px 0;
 }
-.category h2:hover::after {
-  width: 50%;
-}
+
 .category ul {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -18,6 +16,7 @@
 .category_item img {
   width: 150px;
   transition: all 0.2s;
+  border-radius: 10px;
 }
 .category_item {
   box-shadow: 0px 0px 8px 0px rgb(202, 202, 202);
@@ -42,6 +41,10 @@
   text-align: center;
   margin: 10px 0px;
   line-height: 1.8rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 .category_title {
   font-family: var(--font-nunito);
@@ -70,9 +73,6 @@
 }
 .best-seller h2 {
   margin: 50px 0;
-}
-.best-seller h2:hover::after {
-  width: 50%;
 }
 .Best-seller-content {
   display: flex;
@@ -174,6 +174,7 @@
   background-color: var(--color-primary);
   margin: 0 3px;
   transition: all 0.3s;
+  cursor: pointer;
 }
 .pagging-active {
   width: 20px;
@@ -202,9 +203,9 @@
   flex-direction: column;
   align-items: center;
   padding: 27px 20px;
-  box-shadow: 0 0 10px 0 rgba(131, 131, 131, 0.644);
+  box-shadow: 0 0 7px 0px rgba(0, 0, 0, 0.253);
   border-radius: 20px;
-  transition: all 0.4s;
+  transition: all 0.3s;
   -webkit-tap-highlight-color: transparent;
 }
 .sweeties-item img {
@@ -259,7 +260,7 @@
 }
 .sweeties-list li:hover {
   transform: translateY(-4px);
-  box-shadow: 0 0 12px 0 rgba(22, 22, 22, 0.562);
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.288);
 }
 .overlay {
   position: relative;

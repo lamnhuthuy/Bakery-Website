@@ -1,7 +1,7 @@
 <div class="wrapper">
     <div class="container">
         <header class="header">
-            <a href="#/"><img src="<?= PUB ?>/img/logo.png" alt="" class="header_logo" /></a>
+            <a href="<?= DOCUMENT_ROOT ?>"><img src="<?= PUB ?>/img/logo.png" alt="" class="header_logo" /></a>
             <ul class="header_menu_list">
                 <li><a href="<?= DOCUMENT_ROOT ?>" class="header_menu_list_item">Home</a></li>
                 <li><a href="<?= DOCUMENT_ROOT ?>/Cake" class="header_menu_list_item">Cakes</a></li>
@@ -12,7 +12,7 @@
                     <button class="header_search_button">
                         <img src="<?= PUB ?>/icons/search.png" alt="">
                     </button>
-                    <input type="text" placeholder="Search...." name="keyword" />
+                    <input type="text" placeholder="Search . . ." name="keyword" />
                 </form>
             </div>
             <div class="header_info">
@@ -30,7 +30,7 @@
                         <div class="header_user_dropdown">
                             <ul>
                                 <li><a href="<?= DOCUMENT_ROOT ?>/Profile">Profile</a></li>
-                                <li><a href="#/">Cart</a></li>
+                                <li><a href="<?= DOCUMENT_ROOT ?>/Cart">Cart</a></li>
                                 <li><a href="<?= DOCUMENT_ROOT ?>/Account/signOut">Sign out</a></li>
                             </ul>
                         </div>
@@ -68,11 +68,13 @@
                             <g></g>
                         </svg>
                         <ul>
-                            <li><a href="#/">Home</a></li>
-                            <li><a href="#/">Cakes</a></li>
-                            <li><a href="#/">About</a></li>
-                            <li><a href="#/">Profile</a></li>
-                            <li><a href="#/">Cart</a></li>
+                            <li><a href="<?= DOCUMENT_ROOT ?>">Home</a></li>
+                            <li><a href="<?= DOCUMENT_ROOT ?>/Cake">Cake</a></li>
+                            <li><a href="<?= DOCUMENT_ROOT ?>/Cart">Cart</a></li>
+                            <?php if (isset($_SESSION["user"])) : ?>
+                                <li><a href="<?= DOCUMENT_ROOT ?>/Profile">Profile</a></li>
+                            <?php endif ?>
+                            <li><a href="<?= DOCUMENT_ROOT ?>/Account/SignOut">Exit</a></li>
                         </ul>
                     </div>
                 </div>

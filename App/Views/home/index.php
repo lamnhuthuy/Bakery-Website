@@ -1,9 +1,8 @@
 <div class="hide-banner">
   <div class="banner">
-    <img src="<?= PUB ?>/img/banner/banner.png" alt="" class="banner-img" />
-    <img src="<?= PUB ?>/img/banner/banner1.png" alt="" class="banner-img" />
-    <img src="<?= PUB ?>/img/banner/banner2.png" alt="" class="banner-img" />
-    <img src="<?= PUB ?>/img/banner/banner3.png" alt="" class="banner-img" />
+    <?php foreach ($data["banner"] as $index => $value) : ?>
+      <img src="<?= PUB ?>/img/banner/<?= $value["img"] ?>" alt="banner image" class="banner-img" />
+    <?php endforeach ?>
   </div>
 </div>
 
@@ -14,7 +13,7 @@
       <?php foreach ($data["category"] as $index => $value) : ?>
         <li class="category_item">
           <a href="<?= DOCUMENT_ROOT ?>/Category?type=<?= $value["id"] ?>">
-            <img src="<?= PUB ?>/img/categories/<?= strtolower(str_replace(" ", "", $value["name"])) ?>.jfif" alt="" />
+            <img src="<?= PUB ?>/img/categories/<?= $value["image"] ?>" alt="" />
             <p class="category_name"><?= $value["name"] ?></p>
             <p class="category_title"><?= $value["description"] ?></p>
           </a>
@@ -77,7 +76,7 @@
           </p>
           <div class="sweeties-prices">
             <span class="sweeties-prices-new"><?= number_format($value["sale"]) ?> VND</span>
-            <span class="sweeties-prices-old"><?= number_format($value["price"]) ?>VND</span>
+            <span class="sweeties-prices-old"><?= number_format($value["price"]) ?> VND</span>
           </div>
           <button onclick="addToCart(<?= $value['id'] ?>,<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : 0 ?>)" class="btn btn1">Add to cart +</button>
         </li>

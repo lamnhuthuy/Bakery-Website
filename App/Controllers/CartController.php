@@ -21,9 +21,9 @@ class CartController extends Controller
     {
         if (isset($_SESSION['user'])) {
             $amount = $this->cartModel->amountInCart($_SESSION['user']['id']);
-            echo $amount;
+            echo json_encode($amount);
         } else {
-            echo 0;
+            echo json_encode(0);
         }
     }
     function index()
@@ -50,7 +50,21 @@ class CartController extends Controller
     {
         if (isset($_POST)) {
             $result = $this->cartModel->updateCart($_POST);
-            echo json_encode($result);
+            if ($result == true) {
+                $Cake = $this->cartModel->getCakeOfUser($_POST["id_user"]);
+                $data["amount"] = $this->cartModel->amountInCart($_POST["id_user"]);
+                $data["total"] = 0;
+                if ($Cake == false) {
+                    $data["cake"][] = [];
+                } else {
+                    foreach ($Cake as $index => $value) {
+                        $data["cake"][] = $this->cakeModel->getCakeByID($value["id_cake"]);
+                        $data["amountCake"][] = $value["amount"];
+                        $data["total"] += $value["amount"] * $data["cake"][$index]["sale"];
+                    }
+                }
+                echo json_encode($data["total"]);
+            }
         }
     }
     function deleteCart()
@@ -58,7 +72,21 @@ class CartController extends Controller
         if (isset($_POST)) {
             $result = $this->cartModel->deleteCart($_POST);
             if ($result == true) {
-                echo json_encode($this->cartModel->amountInCart($_POST["id_user"]));
+                $Cake = $this->cartModel->getCakeOfUser($_POST["id_user"]);
+                $data["amount"] = $this->cartModel->amountInCart($_POST["id_user"]);
+                $data["total"] = 0;
+                if ($Cake == false) {
+                    $data["cake"][] = [];
+                } else {
+                    foreach ($Cake as $index => $value) {
+                        $data["cake"][] = $this->cakeModel->getCakeByID($value["id_cake"]);
+                        $data["amountCake"][] = $value["amount"];
+                        $data["total"] += $value["amount"] * $data["cake"][$index]["sale"];
+                    }
+                }
+                $res["total"] = $data["total"];
+                $res["amount"] = $data["amount"];
+                echo json_encode($res);
             }
         }
     }

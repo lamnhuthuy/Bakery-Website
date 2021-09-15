@@ -21,6 +21,7 @@
 </head>
 
 <body>
+    <!-- Add loading css -->
     <div class="sk-chase sk-position">
         <div class="sk-chase-dot"></div>
         <div class="sk-chase-dot"></div>
@@ -32,11 +33,10 @@
     <div id="toast"></div>
     <p hidden id="documentRoot"><?= DOCUMENT_ROOT ?></p>
     <?php require_once(VIEW . "\shared\header.php") ?>
-    <?php require_once(VIEW . $view . ".php") ?>
+    <?php require_once(VIEW . DS . $view . ".php") ?>
     <?php require_once(VIEW . "/shared/footer.php") ?>
 
     <script src="<?= PUB ?>/js/main.js"></script>
-    <script src="<?= PUB ?>/js/login.js"></script>
     <script src="<?= PUB ?>/js/cart.js"></script>
     <script src="<?= PUB ?>/js/time.js"></script>
     <?php if (isset($_SESSION["info"]) && $_SESSION["info"] == "no") {
@@ -64,21 +64,64 @@
     <?php if (isset($_SESSION["updateProfile"]) && $_SESSION["updateProfile"] == "true") {
         echo ('<script>
          toast({
-        title: "Update Successfully.",
-        message: "you have successfully updated your personal information.",
+        title: "Updated Successfully.",
+        message: "You have successfully updated your personal information.",
         type: "success",
         duration: 2000,
          });
         </script>');
         unset($_SESSION["updateProfile"]);
+    } elseif (isset($_SESSION["updateProfile"]) && $_SESSION["updateProfile"] == "false") {
+        echo ('<script>
+        toast({
+       title: "Nothing to change.",
+       message: "Nothing to change in your information.",
+       type: "info",
+       duration: 2000,
+        });
+       </script>');
+        unset($_SESSION["updateProfile"]);
     }
     ?>
+
+    <!-- add loading css and refresh cart -->
     <script>
         window.onload = function() {
             document.querySelector("body").style.opacity = "1";
             document.querySelector(".sk-chase").style.display = "none";
             refreshCartNumber();
         };
+    </script>
+
+
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <!--API Facebook messenger plugin -->
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "103597765398128");
+        chatbox.setAttribute("attribution", "biz_inbox");
+
+        window.fbAsyncInit = function() {
+            FB.init({
+                xfbml: true,
+                version: 'v11.0'
+            });
+        };
+
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
 </body>
 

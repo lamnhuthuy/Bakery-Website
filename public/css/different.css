@@ -113,6 +113,7 @@
 }
 .cart1-conatain:hover {
   box-shadow: 0 0 5px #fc6779e0;
+  border: 1px solid transparent;
 }
 .cart-detail-name {
   color: var(--color-title);
@@ -177,7 +178,7 @@
 #total {
   color: var(--color-primary);
 }
-.cart2 button {
+.cart2 input[type="submit"] {
   margin-top: 15px;
   align-self: center;
 }
@@ -209,7 +210,7 @@
   font-family: var(--font-poppins);
   width: 15%;
 }
-.profile-info input {
+.profile-info-name input {
   border: 1px solid rgba(153, 153, 153, 0.562);
   outline: none;
   border-radius: 23px;
@@ -221,11 +222,14 @@
   font-family: var(--font-poppins);
   background-color: #f9f9f9d5;
 }
+.profile-info input[type="submit"] {
+  align-self: center;
+}
 .profile-info-name {
   display: flex;
   align-items: center;
 }
-.profile-info input:focus {
+.profile-info-name input:focus {
   border: 1px solid #fc0420da;
   box-shadow: 0 0 5px #f7a4adcc;
 }
@@ -375,7 +379,7 @@
   padding-top: 5px;
   user-select: none;
 }
-.comment-time i {
+.comment-cursor {
   cursor: pointer;
 }
 .comment-item {
@@ -507,9 +511,6 @@
     align-self: flex-start;
     overflow-x: auto;
     user-select: none;
-  }
-  .img-diff::-webkit-scrollbar {
-    display: none;
   }
   .img-diff img {
     width: 30%;

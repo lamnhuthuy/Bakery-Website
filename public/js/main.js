@@ -1,3 +1,4 @@
+//js mobile responsive
 var menuIcon = document.querySelector(".header_mobile_icon");
 var headerMobile = document.querySelector(".header_mobile_list");
 var del = document.querySelector(".header_mobile_list svg");
@@ -65,4 +66,4 @@ function autoImage(index) {
   contentImg.style.transform = "translateX(" + -imageLength * index + "px)";
   t = index;
 }
-var interval = setInterval(slideImg, 3000);
+var interval = setInterval(slideImg, 3400);

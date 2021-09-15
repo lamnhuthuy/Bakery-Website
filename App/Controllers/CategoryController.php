@@ -12,6 +12,7 @@ class CategoryController extends Controller
     }
     function index()
     {
+        $data["cake"] = [];
         $data["type"] = $_GET["type"];
         $data["cake"] = $this->categoryModel->getCakeByID_type($_GET["type"]);
         $data["name"] = $this->categoryModel->getNameById($_GET["type"]);

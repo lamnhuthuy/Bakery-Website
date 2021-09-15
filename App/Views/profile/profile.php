@@ -1,24 +1,26 @@
 <div class="container">
     <h3 class="detail-title">Profile</h3>
-    <form class="profile" action="<?= DOCUMENT_ROOT ?>/Profile/Update" enctype="multipart/form-data" method="POST">
+    <form class="profile" action="<?= DOCUMENT_ROOT ?>/Profile/Update" enctype="multipart/form-data" method="POST" onsubmit="return checkUpdateUser()">
         <div class="profile-info">
             <div class="profile-info-name">
                 <label for="p-username">User name:</label>
-                <input name="username" type="text" id="p-username" value="<?= $data["user"]["name"] ?>" />
+                <input required name="username" type="text" id="p-username" value="<?= $data["user"]["name"] ?>" />
             </div>
             <div class="profile-info-name">
                 <label for="p-email">Email:</label>
-                <input name="email" type="email" id="p-email" value="<?= $data["user"]["email"] ?>" />
+                <input required name="email" type="email" id="p-email" value="<?= $data["user"]["email"] ?>" onchange="getDataAjax(this.value)" />
             </div>
+            <small id="mail-err" style="color: #d93025; font-size:1.3rem"></small>
             <div class="profile-info-name">
                 <label for="p-phone">Phone:</label>
-                <input name="phone" type="text" id="p-phone" value="<?= $data["user"]["phone"] ?>" />
+                <input required name="phone" type="text" id="p-phone" value="<?= $data["user"]["phone"] ?>" />
             </div>
+            <small id="phone-err" style="color: #d93025; font-size:1.3rem"></small>
             <div class="profile-info-name">
                 <label for="p-address">Address:</label>
                 <input name="address" type="text" id="p-address" value="<?= $data["user"]["address"] ?>" />
             </div>
-            <button class="btn btn--primary">Save</button>
+            <input type="submit" class="btn btn--primary" value="Save">
         </div>
         <div class="profile-image">
             <div class="profile-overlay"></div>
@@ -72,7 +74,7 @@
                             <?php endforeach ?>
                             <p class="history-item-all-total">
                                 Total:
-                                <span class="total"> <?= number_format($value["total"]) ?>VND.</span>
+                                <span class="total"> <?= number_format($value["total"]) ?> VND.</span>
                             </p>
                             <p class="history-item-all-total">
                                 Status:
@@ -101,5 +103,53 @@
                 img.src = e.target.result;
             };
         }
+    }
+    // AJAX To Check user defined
+    function getDataAjax(str) {
+        var documentRoot = document.getElementById("documentRoot").innerHTML;
+        var emailSignUp = document.getElementById("p-email");
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var obj = JSON.parse(this.responseText);
+                if (emailSignUp.value !== "") {
+                    if (obj.email == emailSignUp.value) {
+                        document.getElementById("mail-err").innerHTML =
+                            '<i class="fas fa-exclamation-triangle"></i> Your email already exists.';
+                    } else {
+                        document.getElementById("mail-err").innerHTML = "";
+                    }
+                }
+            }
+        };
+        xhttp.open("POST", documentRoot + "/Account/checkUser");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send(`email=${str}`);
+    }
+
+    function checkPhone(phone) {
+        var res = true;
+        if (phone.length !== 10) {
+            res = '<i class="fas fa-exclamation-triangle"></i> Phone must be have 10 numbers.';
+            return res;
+        }
+        if (phone.charAt(0) !== '0')
+            res = '<i class="fas fa-exclamation-triangle"></i> First number is 0.';
+        return res;
+    }
+
+    function checkUpdateUser() {
+        var res = true;
+        var phoneVal = document.getElementById("p-phone");
+        var phoneMess = document.getElementById("phone-err");
+        var phone = checkPhone(phoneVal.value);
+        if (phone !== true) {
+            phoneMess.innerHTML = phone;
+            res = false;
+        } else phoneMess.innerHTML = "";
+        if (document.getElementById("mail-err").innerHTML !== "") {
+            res = false;
+        }
+        return res;
     }
 </script>

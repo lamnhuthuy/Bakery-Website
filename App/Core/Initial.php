@@ -10,7 +10,7 @@ defined('CONT') ?:  define('CONT', APP . DS . 'Controllers');
 defined('MODEL') ?:  define('MODEL', APP . DS . 'Models');
 defined('VIEW') ?:  define('VIEW', APP . DS . 'Views');
 defined('CONF') ?:  define('CONF', APP . DS . 'Configs');
-defined('PUB') ?:  define('PUB',  "http://" . $_SERVER['SERVER_NAME'] . ":80/bakery" . '/public');
+defined('PUB') ?:  define('PUB',  "http://" . $_SERVER['SERVER_NAME'] . ":81/bakery" . '/public');
 
 
 $database = require(CONF . DS . 'database.php');
@@ -23,4 +23,8 @@ defined('DB_PASSWORD') ?:  define('DB_PASSWORD', $database['db_password']);
 require_once(CORE . DS . "App.php");
 require_once(CORE . DS . "Controller.php");
 require_once(CORE . DS . "Database.php");
-defined('DOCUMENT_ROOT') ?:  define('DOCUMENT_ROOT', "http://" . $_SERVER['SERVER_NAME'] . ":80/Bakery");
+defined('DOCUMENT_ROOT') ?:  define('DOCUMENT_ROOT', "http://" . $_SERVER['SERVER_NAME'] . ":81/Bakery");
+
+$adminSidebar = require(CONF . DS . 'admin_sidebar.php');
+
+defined('ADMIN_SIDEBAR') ?:  define('ADMIN_SIDEBAR', $adminSidebar);

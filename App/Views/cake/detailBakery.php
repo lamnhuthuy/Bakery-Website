@@ -7,9 +7,11 @@
         <img src="<?= PUB ?>/img/cakes/<?= $data["cakeID"]["image"] ?>" alt="" class="current-img" />
       </div>
       <div class="img-diff">
-        <?php foreach ($data["image"] as $index => $value) : ?>
-          <img src="<?= PUB ?>/img/cakes/<?= $value["image"] ?>" alt="" class="" />
-        <?php endforeach ?>
+        <?php if ($data["image"] != []) : ?>
+          <?php foreach ($data["image"] as $index => $value) : ?>
+            <img src="<?= PUB ?>/img/cakes/<?= $value["image"] ?>" alt="" class="" />
+          <?php endforeach ?>
+        <?php endif ?>
       </div>
     </div>
     <div class="cake-detail-content">
@@ -44,16 +46,16 @@
                   <i class="fas fa-thumbs-up"></i>
                   <span id="like"><?= $value["likes"] ?></span>
                   <span id="time"><?= $data['time'][$value["id"]] ?> </span>
-                  <abbr title="Viet Nam"> <i class="fas fa-globe"></i> </abbr>
+                  <i class="far fa-clock"></i>
                 <?php else : ?>
                   <?php if ($data["like"][$value["id"]] == 1) : ?>
-                    <i class="fas fa-thumbs-up like-active" id="icon-like+<?= $value['id'] ?>" onclick="changeState(<?= $value['id'] ?>)"></i>
+                    <i class="fas fa-thumbs-up like-active comment-cursor" id="icon-like+<?= $value['id'] ?>" onclick="changeState(<?= $value['id'] ?>)"></i>
                   <?php else : ?>
-                    <i class="fas fa-thumbs-up" id="icon-like+<?= $value['id'] ?>" onclick="changeState(<?= $value['id'] ?>)"></i>
+                    <i class="fas fa-thumbs-up comment-cursor" id="icon-like+<?= $value['id'] ?>" onclick="changeState(<?= $value['id'] ?>)"></i>
                   <?php endif ?>
                   <span id="like+<?= $value['id'] ?>"><?= $value["likes"] ?></span>
                   <span id="time+<?= $value['id'] ?>"> <?= $data['time'][$value["id"]] ?> </span>
-                  <abbr title="Viet Nam"> <i class="fas fa-globe"></i> </abbr>
+                  <abbr title="GMT+7"><i class="far fa-clock comment-cursor"></i></abbr>
                 <?php endif ?>
               </p>
             </div>

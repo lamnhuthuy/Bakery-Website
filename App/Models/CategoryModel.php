@@ -10,7 +10,7 @@ class CategoryModel extends Database
         $result = $this->con->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
-        } else return;
+        } else return false;
     }
     function getNameById($id)
     {
@@ -69,5 +69,53 @@ class CategoryModel extends Database
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
         } else return;
+    }
+    function getCakeType($id)
+    {
+        $sql = "SELECT * FROM cake_type where id=?";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        } else return false;
+    }
+    function store($data)
+    {
+        $stmt = $this->con->prepare("INSERT INTO CAKE_TYPE(name,description,image) VALUE(?,?,?)");
+        $stmt->bind_param("sss", $data["name"],  $data["description"], $data["image"]);
+        $stmt->execute();
+        $result = $stmt->affected_rows;
+        if ($result < 1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    function delete($id)
+    {
+        $id = intval($id);
+        $stmt = $this->con->prepare("DELETE FROM CAKE_TYPE WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $isSuccess = $stmt->execute();
+        if (!$isSuccess) {
+            return $stmt->error;
+        } else if ($stmt->affected_rows <= 0) {
+            return "Undefined Category ID: $id";
+        }
+        return true;
+    }
+    function update($data)
+    {
+        $stmt = $this->con->prepare("UPDATE CAKE_TYPE SET name = ?, description = ?,image=? WHERE id = ?");
+        $stmt->bind_param("sssi", $data['name'], $data['description'], $data["image"], $data["id"]);
+        $stmt->execute();
+        $result = $stmt->affected_rows;
+        if ($result < 1) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

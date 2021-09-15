@@ -1,7 +1,7 @@
 <div class="container">
   <p hidden> <?= DOCUMENT_ROOT ?></p>
   <h3 class="detail-title">Cart</h3>
-  <form class="cart-control" action="<?= DOCUMENT_ROOT ?>/Cart/checkOut" method="POST">
+  <form class="cart-control" action="<?= DOCUMENT_ROOT ?>/Cart/checkOut" method="POST" onsubmit="return checkOutCart()">
     <div class="cart1">
       <?php if (!isset($_SESSION["user"])) : ?>
         <p class="cart-error">Your cart is empty !</p>
@@ -86,7 +86,7 @@
           Total:
           <span id="total"><?= number_format($data["total"], 0) ?> VND</span>
         </p>
-        <button class="btn btn--primary">Check out</button>
+        <input type="submit" class="btn btn--primary" value="Check Out">
       <?php endif ?>
 
     </div>
@@ -94,21 +94,12 @@
 </div>
 <script>
   function onchangetotal(cakeID, userID, amount) {
-    var total = document.getElementById("total");
-    var sumPrice = 0;
-    for (var i = 0; i < <?= count($data["cake"]) ?>; i++) {
-      var amountCake = document.getElementById("amount+" + i).value;
-      var price = document.getElementById("price+" + i).value;
-
-      sumPrice += parseInt(amountCake) * parseInt(price);
-    }
-    total.innerText = new Intl.NumberFormat().format(sumPrice) + " VND";
-
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         var obj = JSON.parse(this.responseText);
-        console.log(obj);
+        var total = document.getElementById("total");
+        total.innerText = new Intl.NumberFormat().format(obj) + " VND";
       }
     };
     xhttp.open("POST", "<?= DOCUMENT_ROOT . "/Cart/updateCart" ?>");
@@ -127,11 +118,20 @@
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         var obj = JSON.parse(this.responseText);
-        refreshCartNumber(obj);
+        refreshCartNumber(obj.amount);
+        var total = document.getElementById("total");
+        total.innerText = new Intl.NumberFormat().format(obj.total) + " VND";
       }
     };
     xhttp.open("POST", "<?= DOCUMENT_ROOT . "/Cart/deleteCart" ?>");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`id_cake=${cakeID}&id_user=${userID}`);
+  }
+
+  function checkOutCart() {
+    var rs = confirm("Are you sure to buy cake at Greek's Bakery ?");
+    if (rs == true) {
+      return true;
+    } else return false;
   }
 </script>

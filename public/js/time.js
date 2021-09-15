@@ -15,10 +15,10 @@ function add() {
         <p class="comment-content-value">${inputVal.value}.</p>
       </div>
       <p class="comment-time">
-        <i class="fas fa-thumbs-up "></i>
+        <i class="fas fa-thumbs-up comment-cursor"></i>
         <span id="like">0</span>
         <span id="time">Just now</span>
-        <abbr title="Viet Nam"> <i class="fas fa-globe"></i> </abbr>
+        <abbr title="GMT+7"><i class="far fa-clock comment-cursor"></i></abbr>
       </p>
     </div>`;
     document.querySelector(".comment-list").appendChild(item);
@@ -38,7 +38,7 @@ function addComment() {
           add();
           toast({
             title: "Successfully.",
-            message: "Add comment succesfully.",
+            message: "Comments added successfully.",
             type: "success",
             duration: 2000,
           });

@@ -15,11 +15,14 @@ class Controller
     }
     function view($view, $data = [])
     {
-
-        if (file_exists(VIEW . DS . $view . '.php') && (strpos($view, "login") == false)) {
-            $layout = "shared/layout";
-        } elseif (file_exists(VIEW . DS . $view . '.php') && (strpos($view, "login") == true)) {
-            $layout = "shared/login";
+        if (file_exists(VIEW . $view . '.php')) {
+            if (strpos($view, "admin") == true) {
+                $layout = "admin/shared/layout";
+            } else if (strpos($view, "login") == true) {
+                $layout = "shared/login";
+            } else {
+                $layout = "shared/layout";
+            }
         } else  die('Not found view: ' . $view);
         require_once(VIEW . DS . $layout . '.php');
     }

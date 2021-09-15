@@ -49,7 +49,7 @@ function addToCart(cakeID, userID) {
   if (userID == 0) {
     toast({
       title: "Login with us.",
-      message: "Please login to add product to cart.",
+      message: "Please login to add cake to basket.",
       type: "error",
       duration: 3000,
     });
@@ -85,7 +85,7 @@ function refreshCartNumber(cartNumber = -1) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-        cartNumber = this.responseText;
+        cartNumber = JSON.parse(this.responseText);
         cartNumberElement.innerText = cartNumber;
       }
     };

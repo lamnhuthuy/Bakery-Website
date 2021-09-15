@@ -10,7 +10,7 @@ class CakeModel extends Database
         $result = $this->con->query($sql);
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
-        } else return;
+        } else return false;
     }
     function getByKey($key)
     {
@@ -43,7 +43,7 @@ class CakeModel extends Database
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
             return $result->fetch_assoc();
-        } else return;
+        } else return false;
     }
     function getComments($id)
     {
@@ -94,5 +94,64 @@ class CakeModel extends Database
         if ($result->num_rows > 0) {
             return $result->num_rows;
         } else return 0;
+    }
+    function store($data)
+    {
+        $stmt = $this->con->prepare("INSERT INTO CAKES(name,price,size,description,id_cake_type,image,sale) VALUE(?,?,?,?,?,?,?)");
+        $stmt->bind_param("siisisi", $data["name"],  $data["price"],  $data["size"],  $data["description"],  $data["categoryId"], $data["image1"], $data["sale"]);
+        $isSuccess = $stmt->execute();
+        if (!$isSuccess) {
+            return  $stmt->error;
+        }
+        $id_cake =  $this->con->insert_id;
+        for ($i = 1; $i <= 4; $i++) {
+            $stmt = $this->con->prepare("INSERT INTO IMAGES(id_cake,image) VALUE(?,?)");
+            $stmt->bind_param("is", $id_cake, $data["image$i"]);
+            $stmt->execute();
+            $result = $stmt->affected_rows;
+        }
+        if ($result < 1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    function update($data)
+    {
+        $stmt = $this->con->prepare("UPDATE CAKES SET name=?,price=?,size=?,description=?,id_cake_type=?,image=?,sale=? WHERE id=?");
+        $stmt->bind_param("siisisii", $data["name"],  $data["price"],  $data["size"],  $data["description"],  $data["categoryId"], $data["image1"], $data["sale"], $data["id"]);
+        $isSuccess = $stmt->execute();
+        if (!$isSuccess) {
+            return  $stmt->error;
+        }
+        $stmt = $this->con->prepare("DELETE FROM IMAGES WHERE id_cake = ?");
+        $stmt->bind_param("i", $data["id"]);
+        $stmt->execute();
+
+        for ($i = 1; $i <= 4; $i++) {
+            $stmt = $this->con->prepare("INSERT INTO IMAGES(id_cake,image) VALUE(?,?)");
+            $stmt->bind_param("is", $data["id"], $data["image$i"]);
+            $stmt->execute();
+            $result = $stmt->affected_rows;
+        }
+        if ($result < 1) {
+            return "false";
+        } else {
+            return "true";
+        }
+    }
+    function delete($id)
+    {
+        $id = intval($id);
+        $stmt = $this->con->prepare("DELETE FROM CAKES WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $isSuccess = $stmt->execute();
+
+        if (!$isSuccess) {
+            return $stmt->error;
+        } else if ($stmt->affected_rows <= 0) {
+            return "Undefined Cake ID: $id";
+        }
+        return true;
     }
 }

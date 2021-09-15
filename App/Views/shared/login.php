@@ -14,6 +14,7 @@
 </head>
 
 <body>
+  <p hidden id="documentRoot"><?= DOCUMENT_ROOT ?></p>
   <div class="container">
     <div class="forms-container">
       <div class="signin-signup">
@@ -27,17 +28,22 @@
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
+            <i class="far fa-eye" id="hidePass"></i>
             <input type="password" name="password" placeholder="Password" id="signin-password" />
             <small id="password-error">
-              <?php echo isset($_SESSION["message"]) ? '<i class="fas fa-exclamation-triangle"></i> ' . $_SESSION["message"] . '' : "";
+              <?php echo isset($_SESSION["message"]) ? '<i class="fas fa-exclamation-triangle"></i>  '  . $_SESSION["message"] . '' : "";
               unset($_SESSION["message"]);
               ?>
             </small>
+
           </div>
           <input type="submit" id="btn-login" value="Login" class="btn solid" />
-          <p>
+          <p class="<?= isset($_SESSION["mes"]) ? "success" : "error" ?>">
             <?php echo isset($_SESSION["mes"]) ? '<i class="fas fa-check"></i>' .      $_SESSION["mes"] . '' : "";
             unset($_SESSION["mes"]);
+            ?>
+            <?php echo isset($_SESSION["mes1"]) ? '<i class="fas fa-times"></i> ' .         $_SESSION["mes1"] . '' : "";
+            unset($_SESSION["mes1"]);
             ?>
           </p>
         </form>
@@ -102,17 +108,18 @@
     </div>
   </div>
   <script>
+    // JS to change overlay
     const sign_in_btn = document.querySelector("#sign-in-btn");
     const sign_up_btn = document.querySelector("#sign-up-btn");
     const container = document.querySelector(".container");
-
     sign_up_btn.addEventListener("click", () => {
       container.classList.add("sign-up-mode");
     });
-
     sign_in_btn.addEventListener("click", () => {
       container.classList.remove("sign-up-mode");
     });
+
+    // Js to check login submit
     var textField = document.getElementById("signin-text");
     var pwdField = document.getElementById("signin-password");
     var texterror = document.getElementById("input-error");
@@ -138,7 +145,8 @@
       }
       return check;
     }
-    // validation register
+
+    //  jd to validation register
     var pwdSignUp = document.getElementById("signup-password");
     var emailSignUp = document.getElementById("signup-email");
     var confpwdSignUp = document.getElementById("signup-confirmpassword");
@@ -148,6 +156,7 @@
     var confpwdSignUp_error = document.getElementById("confpwdSigUp-error");
     var phone_error = document.getElementById("phoneSignUp-error");
 
+    //function to check 2 password similar
     function checkConfirm(password, confpass) {
       var res = true;
       if (password !== confpass) {
@@ -161,6 +170,7 @@
       return res;
     }
 
+    // function check phone must 10 numbers
     function checkPhone(phone) {
       var res = true;
       if (phone.length !== 10) {
@@ -190,7 +200,9 @@
       return result;
     }
 
+    // AJAX To Check user defined
     function getDataAjax(str) {
+      var documentRoot = document.getElementById("documentRoot").innerHTML;
       const xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -205,9 +217,23 @@
           }
         }
       };
-      xhttp.open("POST", "http://localhost:80/Bakery/Account/checkUser");
+      xhttp.open("POST", documentRoot + "/Account/checkUser");
       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhttp.send(`email=${str}`);
+    }
+    // FUNCTION TO SHOW/HIDE PASSWORD
+    document.getElementById("hidePass").onclick = function(e) {
+      if (e.target.classList.contains("fa-eye") == true) {
+        e.target.classList.remove("fa-eye");
+        e.target.classList.add("fa-eye-slash");
+        pwdField.type = "text";
+
+      } else {
+        e.target.classList.remove("fa-eye-slash");
+        e.target.classList.add("fa-eye");
+        pwdField.type = "password";
+
+      }
     }
   </script>
 </body>

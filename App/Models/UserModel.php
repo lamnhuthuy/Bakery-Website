@@ -73,25 +73,57 @@ class UserModel extends Database
             return false;
         }
     }
-    function updateUser($data, $file)
+    function updateUser($data)
     {
-        $id = $_SESSION["user"]["id"];
-        $name = $data["username"];
-        $phone = $data["phone"];
-        $address = $data["address"];
-        $email = $data["email"];
-        if ($file["name"] !== "") {
-            $avatar = $file["name"];
-            $duongdan = ROOT . DS . "public" . DS . "upload" . DS . "userAvatar" . DS . $_FILES['avatar']['name'];
-            move_uploaded_file($_FILES['avatar']['tmp_name'], $duongdan);
-        } else {
-            $avatar = $this->getByEmail($email)["avatar"];
-        }
 
         $stmt = $this->con->prepare("UPDATE USERS SET name = ?, phone= ?, address= ?,email= ?,avatar=? WHERE id = ?");
-        $stmt->bind_param("sssssi", $name, $phone, $address, $email, $avatar, $id);
+        $stmt->bind_param("sssssi", $data['name'], $data['phone'], $data['address'], $data['email'], $data['image'], $data['id']);
         $stmt->execute();
-        $_SESSION["user"] = $this->getByEmail($email);
-        return $avatar;
+        $result = $stmt->affected_rows;
+        if ($result < 1) {
+            return false;
+        } else {
+            $_SESSION["user"] = $this->getByEmail($data["email"]);
+            return true;
+        }
+    }
+    function all()
+    {
+        $sql = "SELECT id, name, phone, address, email, avatar FROM USERS WHERE role = 1";
+        $result = $this->con->query($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else return false;
+    }
+    function delete($id)
+    {
+        $id = intval($id);
+        $stmt = $this->con->prepare("DELETE FROM USERS WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $isSuccess = $stmt->execute();
+        if (!$isSuccess) {
+            return $stmt->error;
+        } else if ($stmt->affected_rows <= 0) {
+            return "Undefined Cake ID: $id";
+        }
+        return true;
+    }
+    function getAdmin($data)
+    {
+        $stmt = $this->con->prepare("SELECT * FROM USERS WHERE id = ? and role=0");
+        $stmt->bind_param("i", $data["id"]);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $passwordHashed = $result->fetch_assoc()['password'];
+            $isValidPassword = password_verify($data["password"], $passwordHashed);
+            if ($isValidPassword == true) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 }

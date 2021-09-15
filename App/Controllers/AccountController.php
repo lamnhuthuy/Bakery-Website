@@ -16,14 +16,19 @@ class AccountController extends Controller
     }
     function signUp()
     {
-        $result = $this->userModel->register($_POST);
-        if ($result) {
-            $_SESSION["mes"] = "Register successfully. Please login now!";
+        if ($this->userModel->getByEmail($_POST["email"]) != false) {
+            $_SESSION["mes1"] = "Register Unsuccessfull. Please Register now!";
+        } else {
+            $result = $this->userModel->register($_POST);
+            if ($result) {
+                $_SESSION["mes"] = "Register successfully. Please login now!";
+            }
         }
         header("Location: " . DOCUMENT_ROOT . "/Account");
     }
     function authenticate()
     {
+
         if (isset($_POST)) {
             $result = $this->userModel->authenticate($_POST);
             if ($result == true) {

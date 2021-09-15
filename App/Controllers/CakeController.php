@@ -41,6 +41,7 @@ class CakeController extends Controller
     }
     function detail($id)
     {
+        $data["image"] = [];
         $data["comments"] = [];
         $data["comments"] = $this->key->getComments($id);
         if ($data["comments"] != []) {
@@ -87,7 +88,7 @@ class CakeController extends Controller
             if ($interval < 6) {
                 return ($interval . " days ago");
             } else {
-                return (date("M d Y",  $timestamp));
+                return (date("M d Y H:s",  $timestamp));
             }
         }
         $interval = floor($seconds / 3600);

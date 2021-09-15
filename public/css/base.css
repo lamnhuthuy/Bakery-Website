@@ -68,12 +68,11 @@ p {
   content: "";
   height: 2px;
   position: absolute;
-  left: 4px;
-  bottom: -20px;
-  width: 0;
+  left: 50%;
+  bottom: -15px;
+  transform: translateX(-50%);
+  width: 50%;
   background: #f3455a;
-  border-radius: 44px;
-  transition: all 0.2s;
 }
 .btn {
   padding: 5px 30px;
