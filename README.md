@@ -8,10 +8,8 @@
 
 ## Table of contents
 
-    1.[Overview](#Bakery-Website).
-    2.[Description](#Description).
-    3.Third item.
-    4.Fourth item.
+    [Overview](#Bakery-Website).
+    [Description](#Description).
 
 ## Description
 
