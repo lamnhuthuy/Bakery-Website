@@ -98,6 +98,7 @@
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         var obj = JSON.parse(this.responseText);
+        console.log(obj);
         var total = document.getElementById("total");
         total.innerText = new Intl.NumberFormat().format(obj) + " VND";
       }
@@ -118,6 +119,7 @@
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         var obj = JSON.parse(this.responseText);
+        console.log(obj);
         refreshCartNumber(obj.amount);
         var total = document.getElementById("total");
         total.innerText = new Intl.NumberFormat().format(obj.total) + " VND";

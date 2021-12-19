@@ -85,7 +85,7 @@
     <div class="panels-container">
       <div class="panel left-panel">
         <div class="content">
-          <h3>New here ?</h3>
+          <h3>Welcome to Geek's Bakery House</h3>
           <p>
             Do you already have an account?
             If not, Please register your account here.

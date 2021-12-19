@@ -19,7 +19,7 @@
   border-radius: 10px;
 }
 .category_item {
-  box-shadow: 0px 0px 8px 0px rgb(202, 202, 202);
+  box-shadow: 0px 0px 4px 0px rgb(202, 202, 202);
   border-radius: 15px;
   overflow: hidden;
   border: 2px solid transparent;
@@ -203,7 +203,7 @@
   flex-direction: column;
   align-items: center;
   padding: 27px 20px;
-  box-shadow: 0 0 7px 0px rgba(0, 0, 0, 0.253);
+  box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.253);
   border-radius: 20px;
   transition: all 0.3s;
   -webkit-tap-highlight-color: transparent;

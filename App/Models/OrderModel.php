@@ -206,4 +206,17 @@ class OrderModel extends Database
             return true;
         }
     }
+    function getOrderCXL($id)
+    {
+        $stmt = $this->con->prepare("SELECT * FROM ORDERS WHERE id_user = ? and id_status='CXL'");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
 }

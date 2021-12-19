@@ -3,7 +3,7 @@
         <div class="card ">
             <div class="card-body login-card-body">
                 <div class="login-logo text-danger border-bottom">
-                    <b>Greek's Bakery Admin</b>
+                    <b>Geek's Bakery Admin</b>
                 </div>
                 <p class="text-center text-dark"> Log in with your account administrator to access the site management. <i class="fas fa-sign-in-alt"></i></p>
 

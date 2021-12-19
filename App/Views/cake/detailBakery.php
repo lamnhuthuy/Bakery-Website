@@ -16,9 +16,9 @@
     </div>
     <div class="cake-detail-content">
       <h6 class="Best-seller-name"><?= $data["cakeID"]["name"] ?></h6>
-      <p class="cake-detail-content-id"><b> ID Product:</b> <?= $data["cakeID"]["id"] ?>.</p>
       <p class="cake-detail-content-id"><b>Type:</b> <?= $data["type"] ?>.</p>
       <p class="cake-detail-content-id"><b>Size:</b> <?= $data["cakeID"]["size"] ?>.</p>
+
       <p class="cake-detail-content-id"><b>Description:</b></p>
       <p class="Best-seller-title">
         <?= $data["cakeID"]["description"] ?>
